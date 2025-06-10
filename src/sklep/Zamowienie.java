@@ -4,47 +4,62 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Zamowienie {
-    private List<Produkt> produkty;
+    private List<PozycjaZamowienia> pozycje;
     private int idZamowienia;
     private static int licznikZamowien = 1;
 
     public Zamowienie() {
-        produkty = new ArrayList<>();
+        pozycje = new ArrayList<>();
         this.idZamowienia = licznikZamowien++;
     }
 
     public int getIdZamowienia() {
         return idZamowienia;
     }
-
-    public void dodajProdukt(Produkt p) {
-        produkty.add(p);
+    public List<PozycjaZamowienia> getPozycje(){
+        return pozycje;
     }
 
-    public void usunProdukt(Produkt p) {
-        produkty.remove(p);
-    }
-
-    public double obliczLacznaCene() {
-        double suma = 0;
-        for (Produkt p : produkty) {
-            suma += p.obliczCeneZVat();
+    // Dodawanie produktu z ilością (nowa metoda)
+    public void dodajProdukt(Produkt p, int ilosc) {
+        for (PozycjaZamowienia poz : pozycje) {
+            if (poz.getProdukt().getId() == p.getId()) {
+                // Jeśli produkt już jest, dodaj ilość
+                poz.setIlosc(poz.getIlosc() + ilosc);
+                return;
+            }
         }
-        return suma;
+        // Jeśli produktu jeszcze nie ma, dodaj nową pozycję
+        pozycje.add(new PozycjaZamowienia(p, ilosc));
+    }
+
+    // Usuwanie produktu całkowicie z zamówienia
+    public void usunProdukt(Produkt p) {
+        pozycje.removeIf(poz -> poz.getProdukt().getId() == p.getId());
+    }
+
+    // Sprawdzanie czy produkt jest w zamówieniu
+    public boolean contains(Produkt p) {
+        return pozycje.stream().anyMatch(poz -> poz.getProdukt().getId() == p.getId());
     }
 
     public void wyswietlZamowienie() {
         System.out.println("Zamówienie nr: " + idZamowienia);
-        if (produkty.isEmpty()) {
+        if (pozycje.isEmpty()) {
             System.out.println("Brak produktów w zamówieniu.");
         } else {
-            for (Produkt p : produkty) {
-                System.out.println(p);
+            for (PozycjaZamowienia poz : pozycje) {
+                System.out.println(poz);
             }
             System.out.printf("Łączna cena z VAT: %.2f PLN%n", obliczLacznaCene());
         }
     }
-    public List<Produkt> getProdukty() {
-        return produkty;
+
+    public double obliczLacznaCene() {
+        double suma = 0;
+        for (PozycjaZamowienia poz : pozycje) {
+            suma += poz.getProdukt().obliczCeneZVat() * poz.getIlosc();
+        }
+        return suma;
     }
 }
