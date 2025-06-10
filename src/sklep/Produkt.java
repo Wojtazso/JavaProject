@@ -67,7 +67,7 @@ public abstract class Produkt {
     }
 
     public void setId(int id) {
-        if (id > 0) {
+        if (id >= 0) {
             this.id = id;
         } else {
             throw new IllegalArgumentException("ID musi być większe od 0.");
