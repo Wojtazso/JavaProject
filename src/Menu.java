@@ -7,13 +7,13 @@ public class Menu {
         int wybor;
         do {
             System.out.println("\n--- MENU ---");
-            System.out.println("1. Dodaj produkt");
-            System.out.println("2. Wyświetl produkty");
-            System.out.println("3. Dodaj klienta");
-            System.out.println("4. Wyświetl klientów");
-            System.out.println("5. Złóż zamówienie");
-            System.out.println("6. Wyświetl zamówienia");
-            System.out.println("0. Wyjście");
+            System.out.println("1. Dodaj produkt.");
+            System.out.println("2. Wyświetl produkty.");
+            System.out.println("3. Dodaj klienta.");
+            System.out.println("4. Wyświetl klientów.");
+            System.out.println("5. Złóż zamówienie.");
+            System.out.println("6. Wyświetl zamówienia.");
+            System.out.println("0. Wyjście.");
             System.out.print("Wybierz opcję: ");
             wybor = scan.nextInt();
 
