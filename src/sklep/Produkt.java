@@ -75,7 +75,7 @@ public abstract class Produkt {
     }
     @Override
     public String toString() {
-        return "id produktu = " + id +", Nazwa produktu = "+nazwa +", Kategoria = "+kategoria+", Ilosc = " +ilosc+ ", Cena = " +cena+" PLN, Cena z Vatem = "+obliczvat()+" PLN";
+        return "id produktu = " + id +", Nazwa produktu = "+nazwa +", Kategoria = "+kategoria+", Ilosc = " +ilosc+ ", Cena = " +cena+" PLN, Cena z Vatem = "+obliczCeneZVat()+" PLN";
     }
-    public abstract double obliczvat();
+    public abstract double obliczCeneZVat();
 }
