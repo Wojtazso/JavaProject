@@ -27,6 +27,8 @@ public class Menu {
                 System.out.println("5. Aktualnie zamowienie.");
                 System.out.println("6. Reset zamowienia");
                 System.out.println("7. Wyjście.");
+                System.out.println("8. Dodanie nowego przedmiotu do sklepu.");
+                System.out.println("9. Usuniecie przedmiotu ze sklepu");
                 System.out.print("Wybierz opcję: ");
                 wybor = scan.nextInt();
 
@@ -118,6 +120,14 @@ public class Menu {
                         System.out.println("Aktualne zamówienie zostało zresetowane, magazyn przywrócony do stanu początkowego.");
                     }
                     case 7 -> System.out.println("Zakończono program.");
+                    case 8 -> magazyn.stworzNowyObiekt();
+                    case 9 -> {
+                        System.out.println("Podaj ID produktu, z którego chcesz odjąć ilość:");
+                        int id = scan.nextInt();
+                        System.out.println("Ile sztuk chcesz odjąć?");
+                        int ile = scan.nextInt();
+                        scan.nextLine(); // czyści bufor
+                        magazyn.odejmijIloscProduktu(id, ile);}
                     default -> System.out.println("Nieprawidłowa opcja.");
                 }
 
