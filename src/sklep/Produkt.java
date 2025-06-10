@@ -1,4 +1,4 @@
-package Sklep;
+package sklep;
 
 public abstract class Produkt {
 
