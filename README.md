@@ -48,10 +48,10 @@ bash
 cd /ścieżka/do/javaproject
 
 2. Skompiluj pliki .java do folderu out:
-javac -d out src/Sklep/*.java
+javac -d out src/sklep/*.java
 
 3. Uruchom program (zakładając, że główna klasa to Main w pakiecie Sklep):
-java -cp out Sklep.Main
+java -cp out sklep.Main
 
 Jeśli masz więcej pakietów lub podfolderów w src, możesz skompilować wszystkie pliki tak:
 find src -name "*.java" > sources.txt
