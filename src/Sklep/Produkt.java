@@ -10,11 +10,11 @@ public abstract class Produkt {
     private int id;
 
     public Produkt(String nazwa, String kategoria, int ilosc, double cena, int id) {
-        this.nazwa = nazwa;
-        this.kategoria=kategoria;
-        this.ilosc = ilosc;
-        this.cena = cena;
-        this.id = id;
+        setNazwa(nazwa);
+        setKategoria(kategoria);
+        setIlosc(ilosc);
+        setCena(cena);
+        setId(id);
     }
     public Produkt(){
         this.nazwa="Brak";
@@ -28,43 +28,51 @@ public abstract class Produkt {
     public String getNazwa() {
         return nazwa;
     }
-
     public String getKategoria() {
         return kategoria;
     }
-
-    public void setKategoria(String kategoria) {
-        this.kategoria = kategoria;
-    }
-
-    public void setNazwa(String nazwa) {
-        this.nazwa = nazwa;
-    }
-
     public int getIlosc() {
         return ilosc;
     }
+    public int getId() {return id;}
+    public double getCena() {return cena;}
 
-    public void setIlosc(int ilosc) {
-        this.ilosc = ilosc;
+    public void setCena(double cena) {
+        if(cena>0)
+        this.cena = cena;
+        else {throw new IllegalArgumentException("Cena musi być wieksza od zera");}
+    }
+    public void setNazwa(String nazwa) {
+        if (nazwa != null && !nazwa.trim().isEmpty()) {
+            this.nazwa = nazwa;
+        } else {
+            throw new IllegalArgumentException("Nazwa nie może być pusta.");
+        }
     }
 
-    public int getId() {
-        return id;
+    public void setKategoria(String kategoria) {
+        if (kategoria != null && !kategoria.trim().isEmpty()) {
+            this.kategoria = kategoria;
+        } else {
+            throw new IllegalArgumentException("Kategoria nie może być pusta.");
+        }
+    }
+
+    public void setIlosc(int ilosc) {
+        if (ilosc >= 0) {
+            this.ilosc = ilosc;
+        } else {
+            throw new IllegalArgumentException("Ilość nie może być ujemna.");
+        }
     }
 
     public void setId(int id) {
-        this.id = id;
+        if (id > 0) {
+            this.id = id;
+        } else {
+            throw new IllegalArgumentException("ID musi być większe od 0.");
+        }
     }
-
-    public double getCena() {
-        return cena;
-    }
-
-    public void setCena(double cena) {
-        this.cena = cena;
-    }
-
     @Override
     public String toString() {
         return "id produktu = " + id +", Nazwa produktu = "+nazwa +", Kategoria = "+kategoria+", Ilosc = " +ilosc+ ", Cena = " +cena+" PLN, Cena z Vatem = "+obliczvat()+" PLN";
