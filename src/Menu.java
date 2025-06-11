@@ -100,7 +100,7 @@ public class Menu {
                                 } else {
                                     System.out.println("Wybierz platnosc jeszcze raz");
                                 }
-                            } while (!wyborplatnosci.contains("karta") || wyborplatnosci.contains("gotowka"));
+                            } while (!wyborplatnosci.contains("karta") && !wyborplatnosci.contains("gotowka"));
                         } else {
                             System.out.print("jest puste")  ;
                         }
