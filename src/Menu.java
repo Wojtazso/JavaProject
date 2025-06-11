@@ -63,7 +63,7 @@ public class Menu {
 
                         if (d >= 0 && d < magazyn.rozmiar()) {
                             Produkt produktDoUsuniecia = magazyn.getProdukty(d);
-                            if (zamowienie.contains(produktDoUsuniecia)) {
+                            if (zamowienie.zawiera(produktDoUsuniecia)) {
                                 // Przywróć ilość do magazynu
                                 for (PozycjaZamowienia poz : zamowienie.getPozycje()) {
                                     if (poz.getProdukt().getId() == produktDoUsuniecia.getId()) {
@@ -100,7 +100,7 @@ public class Menu {
                                 } else {
                                     System.out.println("Wybierz platnosc jeszcze raz");
                                 }
-                            } while (!wyborplatnosci.contains("karta") || wyborplatnosci.contains("gotowka"));
+                            } while (!wyborplatnosci.contains("karta") && !wyborplatnosci.contains("gotowka"));
                         } else {
                             System.out.print("jest puste")  ;
                         }

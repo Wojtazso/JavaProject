@@ -39,7 +39,7 @@ public class Zamowienie {
     }
 
     // Sprawdzanie czy produkt jest w zamówieniu
-    public boolean contains(Produkt p) {
+    public boolean zawiera(Produkt p) {
         return pozycje.stream().anyMatch(poz -> poz.getProdukt().getId() == p.getId());
     }
 

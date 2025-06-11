@@ -1,0 +1,115 @@
+@startuml
+left to right direction
+class Main {
+    +main(String[] args) : void
+}
+
+class Menu {
+    -scan : Scanner
+    +menu() : void
+}
+
+class Magazyn {
+    -produkty : List<Produkt>
+    +Magazyn()
+    +magazyny() : void
+    +stworzNowyObiekt() : void
+    +dodajProdukt(p : Produkt) : void
+    +getProdukty() : List<Produkt>
+    +getProdukty(i : int) : Produkt
+    +wyswietlProdukty() : void
+    +odejmijIloscProduktu(id : int, ile : int) : void
+    +rozmiar() : int
+    +getKopiaProduktow() : List<Produkt>
+}
+
+abstract class Produkt {
+    -nazwa : String
+    -kategoria : String
+    -ilosc : int
+    -cena : double
+    -id : int
+    +Produkt(nazwa:String, kategoria:String, ilosc:int, cena:double, id:int)
+    +Produkt()
+    +getNazwa() : String
+    +getKategoria() : String
+    +getIlosc() : int
+    +getId() : int
+    +getCena() : double
+    +setCena(cena: double) : void
+    +setNazwa(nazwa: String) : void
+    +setKategoria(kategoria: String) : void
+    +setIlosc(ilosc: int) : void
+    +setId(id: int) : void
+    +toString() : String
+    +obliczCeneZVat() : double
+}
+
+class Elektronika {
+    -gwarancja : int
+    +Elektronika(...)
+    +getGwarancja() : int
+    +setGwarancja(gwarancja : int) : void
+    +obliczCeneZVat() : double
+    +toString() : String
+}
+
+class CzesciSamochodowe {
+    -marka : String
+    +CzesciSamochodowe(...)
+    +getMarka() : String
+    +setMarka(marka : String) : void
+    +obliczCeneZVat() : double
+    +toString() : String
+}
+
+class Ubrania {
+    -rozmiar : String
+    -kolor : String
+    -material : String
+    +Ubrania(...)
+    +getRozmiar() : String
+    +setRozmiar(rozmiar : String) : void
+    +getKolor() : String
+    +setKolor(kolor : String) : void
+    +getMaterial() : String
+    +setMaterial(material : String) : void
+    +obliczCeneZVat() : double
+    +toString() : String
+}
+
+class Zamowienie {
+    -pozycje : List<PozycjaZamowienia>
+    -idZamowienia : int
+    -licznikZamowien : int {static}
+    +Zamowienie()
+    +getIdZamowienia() : int
+    +getPozycje() : List<PozycjaZamowienia>
+    +dodajProdukt(p: Produkt, ilosc: int) : void
+    +usunProdukt(p: Produkt) : void
+    +contains(p: Produkt) : boolean
+    +wyswietlZamowienie() : void
+    +obliczLacznaCene() : double
+}
+
+class PozycjaZamowienia {
+    -produkt : Produkt
+    -ilosc : int
+    +PozycjaZamowienia(produkt: Produkt, ilosc: int)
+    +getProdukt() : Produkt
+    +getIlosc() : int
+    +setIlosc(ilosc: int) : void
+    +toString() : String
+}
+
+Main --> Menu
+Menu --> Magazyn
+Menu --> Zamowienie
+Magazyn -up- Produkt
+Produkt <|-- Elektronika
+Produkt <|-- CzesciSamochodowe
+Produkt <|-- Ubrania
+Zamowienie -- PozycjaZamowienia
+PozycjaZamowienia -up-> Produkt
+
+@enduml
